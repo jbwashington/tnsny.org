@@ -1,0 +1,27 @@
+{{ define "main" }}
+<!-- Page Header -->
+<div class="bg-primary-50 border-b border-primary-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <a href="/news/" class="inline-flex items-center text-sm text-primary-600 hover:text-accent mb-4 transition-colors">
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Back to News
+    </a>
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-800">{{ .Title }}</h1>
+    <div class="flex items-center space-x-3 mt-4">
+      <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-sm font-medium text-gray-500">
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+      {{ with .Params.author }}
+      <span class="text-gray-300">|</span>
+      <span class="text-sm text-gray-500">{{ . }}</span>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <article class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary-800 prose-a:text-primary-700 prose-a:underline hover:prose-a:text-accent">
+    {{ .Content }}
+  </article>
+</div>
+{{ end }}

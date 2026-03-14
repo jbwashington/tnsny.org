@@ -1,0 +1,203 @@
+backend:
+  name: github
+  repo: jbwashington/tnsny.org
+  branch: main
+  base_url: https://tnsny.org
+  auth_endpoint: /auth
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  # ----- NEWS POSTS -----
+  - name: news
+    label: "News & Events"
+    folder: content/news
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "TNS PTA" }
+      - { label: "Category", name: "category", widget: "select", options: ["Events", "Admissions", "PTA", "Announcements", "Community"], default: "Announcements" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ----- ABOUT PAGES -----
+  - name: about
+    label: "About Pages"
+    files:
+      - label: "About TNS"
+        name: "about-index"
+        file: "content/about/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Mission"
+        name: "mission"
+        file: "content/about/mission.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Principal's Message"
+        name: "principals-message"
+        file: "content/about/principals-message.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Donate"
+        name: "donate"
+        file: "content/about/donate.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # ----- ACADEMICS PAGES -----
+  - name: academics
+    label: "Academics Pages"
+    files:
+      - label: "Academics Overview"
+        name: "academics-index"
+        file: "content/academics/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Admissions"
+        name: "admissions"
+        file: "content/academics/admissions.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Our Classes"
+        name: "our-classes"
+        file: "content/academics/our-classes.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Our Curriculum"
+        name: "our-curriculum"
+        file: "content/academics/our-curriculum.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "After School Programs"
+        name: "after-school"
+        file: "content/academics/after-school.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # ----- FAMILIES PAGES -----
+  - name: families
+    label: "Students & Families Pages"
+    files:
+      - label: "Families Overview"
+        name: "families-index"
+        file: "content/families/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Forms"
+        name: "forms"
+        file: "content/families/forms.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Helpful Links"
+        name: "helpful-links"
+        file: "content/families/helpful-links.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "PTA"
+        name: "pta"
+        file: "content/families/pta.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "OMNY Cards"
+        name: "omny-cards"
+        file: "content/families/omny-cards.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Volunteer"
+        name: "volunteer"
+        file: "content/families/volunteer.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # ----- STAFF DIRECTORY -----
+  - name: staff
+    label: "Staff Directory"
+    files:
+      - label: "All Staff"
+        name: "staff-data"
+        file: "data/staff.json"
+        fields:
+          - label: "Administration"
+            name: "administration"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+          - label: "Office Staff"
+            name: "office"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Email", name: "email", widget: "string", required: false }
+          - label: "Teachers"
+            name: "teachers"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Grade", name: "grade", widget: "string", required: false }
+              - { label: "Subject", name: "subject", widget: "string", required: false }
+          - label: "Paraprofessionals"
+            name: "paraprofessionals"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+
+  # ----- CONTACT PAGE -----
+  - name: contact
+    label: "Contact Page"
+    files:
+      - label: "Contact"
+        name: "contact-index"
+        file: "content/contact/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  # ----- HOMEPAGE -----
+  - name: homepage
+    label: "Homepage"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "content/_index.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }

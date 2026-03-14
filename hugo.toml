@@ -1,0 +1,148 @@
+baseURL = "https://tnsny.org/"
+languageCode = "en-us"
+title = "The Neighborhood School (PS363M)"
+summaryLength = 30
+paginate = 10
+enableRobotsTXT = true
+
+[params]
+  description = "A diverse, progressive public elementary school in NYC's East Village"
+  schoolName = "The Neighborhood School"
+  schoolCode = "PS363M"
+  address = "121 East 3rd Street, New York, NY 10009"
+  phone = "(212) 387-0195"
+  district = "District 1, Region 9"
+  email = "denise@tnsny.org"
+  ptaEmail = "ptapresident@tnsny.org"
+  donateURL = "https://www.zeffy.com/en-US/donation-form/006c94e6-ad9a-4da1-ad97-ee74e3a3b9de"
+  konstellaURL = "https://www.konstella.com"
+  facebookURL = "https://www.facebook.com/TheNeighborhoodSchoolNYC"
+  instagramURL = "https://www.instagram.com/taborpta/"
+  twitterURL = "https://x.com/TNS_PTA"
+  youtubeURL = "https://www.youtube.com/@tnspta"
+  calendarID = "tnsny.org_classroom806d69@group.calendar.google.com"
+  primaryColor = "#1e3a5f"
+  accentColor = "#d4a843"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+    identifier = "about"
+
+  [[menu.main]]
+    name = "About TNS"
+    url = "/about/"
+    weight = 1
+    parent = "about"
+
+  [[menu.main]]
+    name = "Mission"
+    url = "/about/mission/"
+    weight = 2
+    parent = "about"
+
+  [[menu.main]]
+    name = "Principal's Message"
+    url = "/about/principals-message/"
+    weight = 3
+    parent = "about"
+
+  [[menu.main]]
+    name = "Donate"
+    url = "/about/donate/"
+    weight = 4
+    parent = "about"
+
+  [[menu.main]]
+    name = "Academics"
+    url = "/academics/"
+    weight = 3
+    identifier = "academics"
+
+  [[menu.main]]
+    name = "Admissions"
+    url = "/academics/admissions/"
+    weight = 1
+    parent = "academics"
+
+  [[menu.main]]
+    name = "Our Classes"
+    url = "/academics/our-classes/"
+    weight = 2
+    parent = "academics"
+
+  [[menu.main]]
+    name = "Our Curriculum"
+    url = "/academics/our-curriculum/"
+    weight = 3
+    parent = "academics"
+
+  [[menu.main]]
+    name = "After School Programs"
+    url = "/academics/after-school/"
+    weight = 4
+    parent = "academics"
+
+  [[menu.main]]
+    name = "Students & Families"
+    url = "/families/"
+    weight = 4
+    identifier = "families"
+
+  [[menu.main]]
+    name = "Forms"
+    url = "/families/forms/"
+    weight = 1
+    parent = "families"
+
+  [[menu.main]]
+    name = "Helpful Links"
+    url = "/families/helpful-links/"
+    weight = 2
+    parent = "families"
+
+  [[menu.main]]
+    name = "PTA"
+    url = "/families/pta/"
+    weight = 3
+    parent = "families"
+
+  [[menu.main]]
+    name = "OMNY Cards"
+    url = "/families/omny-cards/"
+    weight = 4
+    parent = "families"
+
+  [[menu.main]]
+    name = "Volunteer"
+    url = "/families/volunteer/"
+    weight = 5
+    parent = "families"
+
+  [[menu.main]]
+    name = "Faculty & Staff"
+    url = "/staff/"
+    weight = 5
+
+  [[menu.main]]
+    name = "News & Events"
+    url = "/news/"
+    weight = 6
+
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 7

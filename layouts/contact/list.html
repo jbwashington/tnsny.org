@@ -1,0 +1,115 @@
+{{ define "main" }}
+<!-- Page Header -->
+<div class="bg-primary-50 border-b border-primary-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-800">Contact Us</h1>
+    <p class="mt-3 text-lg text-gray-600">We'd love to hear from you. Reach out to our school community.</p>
+  </div>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- Contact Info -->
+    <div>
+      <div class="bg-white border border-gray-200 rounded-xl p-8">
+        <h2 class="font-heading text-2xl font-bold text-primary-800 mb-6">School Information</h2>
+
+        <div class="space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-primary-800">Address</h3>
+              <p class="text-gray-600 mt-1">{{ .Site.Params.address }}</p>
+              <p class="text-sm text-gray-500 mt-1">{{ .Site.Params.district }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-primary-800">Phone</h3>
+              <p class="text-gray-600 mt-1">{{ .Site.Params.phone }}</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-primary-800">Email</h3>
+              <p class="text-gray-600 mt-1">
+                <strong>Parent Coordinator:</strong><br>
+                <a href="mailto:{{ .Site.Params.email }}" class="text-primary-600 hover:text-accent">{{ .Site.Params.email }}</a>
+              </p>
+              <p class="text-gray-600 mt-2">
+                <strong>PTA:</strong><br>
+                <a href="mailto:{{ .Site.Params.ptaEmail }}" class="text-primary-600 hover:text-accent">{{ .Site.Params.ptaEmail }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Contacts -->
+      <div class="bg-primary-50 rounded-xl p-8 mt-6">
+        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-4">Key Contacts</h3>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <dt class="font-medium text-gray-700">Principal</dt>
+            <dd class="text-gray-600">Dyanthe Spielberg</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="font-medium text-gray-700">Assistant Principal</dt>
+            <dd class="text-gray-600">Shaquawn Parker</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="font-medium text-gray-700">Parent Coordinator</dt>
+            <dd class="text-gray-600">Denise Soltren</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="font-medium text-gray-700">PTA Co-Presidents</dt>
+            <dd class="text-gray-600">Elena Matt &amp; Brooke Moreland</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div>
+      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2!2d-73.9876!3d40.7255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599f0d54e0cd%3A0x6b0edb2b123a9b8!2s121%20E%203rd%20St%2C%20New%20York%2C%20NY%2010009!5e0!3m2!1sen!2sus!4v1"
+          width="100%"
+          height="350"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="w-full"
+        ></iframe>
+      </div>
+
+      {{ with .Content }}
+      <div class="mt-6 prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-primary-800">
+        {{ . }}
+      </div>
+      {{ end }}
+
+      <!-- Getting Here -->
+      <div class="bg-white border border-gray-200 rounded-xl p-8 mt-6">
+        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-4">Getting Here</h3>
+        <div class="space-y-3 text-sm text-gray-600">
+          <p><strong>Subway:</strong> F train to 2nd Avenue, 6 train to Astor Place, or N/R/W to 8th Street-NYU</p>
+          <p><strong>Bus:</strong> M15 on 1st/2nd Avenue, M21 on Houston Street, M8 on St. Marks Place</p>
+          <p><strong>Bike:</strong> Citi Bike stations nearby on 1st Avenue and Avenue A</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

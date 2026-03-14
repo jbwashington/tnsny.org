@@ -1,0 +1,117 @@
+{
+  "administration": [
+    {
+      "name": "Dyanthe Spielberg",
+      "title": "Principal",
+      "email": "dyanthe@tnsny.org"
+    },
+    {
+      "name": "Shaquawn Parker",
+      "title": "Assistant Principal",
+      "email": ""
+    },
+    {
+      "name": "Denise Soltren",
+      "title": "Parent Coordinator",
+      "email": "denise@tnsny.org"
+    }
+  ],
+  "office": [
+    {
+      "name": "Tylynn Berry",
+      "title": "Office Staff"
+    },
+    {
+      "name": "Alicia Lai",
+      "title": "Office Staff"
+    },
+    {
+      "name": "Joann Tirado",
+      "title": "Office Staff",
+      "email": "joann@tnsny.org"
+    }
+  ],
+  "teachers": [
+    {
+      "name": "Lauren B Barnett",
+      "grade": "4/5"
+    },
+    {
+      "name": "Grace Chang",
+      "grade": "2/3"
+    },
+    {
+      "name": "Chelsea Crawford",
+      "grade": "2/3"
+    },
+    {
+      "name": "Wanda Cruceta",
+      "grade": "Pre-K"
+    },
+    {
+      "name": "Liz Devine",
+      "grade": "4/5"
+    },
+    {
+      "name": "Erin Hyde",
+      "grade": "3K"
+    },
+    {
+      "name": "Sophie Laloi",
+      "grade": "2/3"
+    },
+    {
+      "name": "Corinthia Mirasol-Spath",
+      "grade": "4/5"
+    },
+    {
+      "name": "Alexis Neider",
+      "grade": "4/5"
+    },
+    {
+      "name": "Kory Pippen",
+      "grade": "2/3"
+    },
+    {
+      "name": "Lauren R Reinhard",
+      "grade": "2/3"
+    },
+    {
+      "name": "Dianne Riley",
+      "grade": "K/1"
+    },
+    {
+      "name": "Neddy Roger",
+      "grade": "K/1"
+    },
+    {
+      "name": "Andy Spinello",
+      "subject": "Physical Education"
+    },
+    {
+      "name": "Katie Troutman",
+      "grade": "4/5"
+    },
+    {
+      "name": "Charlotte Vinson",
+      "grade": "4/5"
+    },
+    {
+      "name": "Paula Zamora Gonzalez",
+      "subject": "Librarian"
+    }
+  ],
+  "paraprofessionals": [
+    { "name": "Gina Alba" },
+    { "name": "Elsie Colon" },
+    { "name": "Marisol Cortes" },
+    { "name": "Jack Dewald" },
+    { "name": "Liz Dickerson" },
+    { "name": "Elise Rodriguez" },
+    { "name": "Lameeka Rowley" },
+    { "name": "Alejandra Taveras" },
+    { "name": "Louis Velez" },
+    { "name": "Hughes Vixama" },
+    { "name": "Wonda Webb" }
+  ]
+}

@@ -1,0 +1,41 @@
+{{ define "main" }}
+<!-- Page Header -->
+<div class="bg-primary-50 border-b border-primary-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-800">News &amp; Events</h1>
+    <p class="mt-3 text-lg text-gray-600">The latest updates from The Neighborhood School community.</p>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  {{ $pages := .Pages }}
+  {{ if $pages }}
+  <div class="space-y-8">
+    {{ range $pages }}
+    <article class="bg-white border border-gray-200 rounded-xl p-8 hover:shadow-md transition-shadow">
+      <div class="flex items-center space-x-3 mb-3">
+        <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-sm font-medium text-accent-dark bg-accent/10 px-3 py-1 rounded-full">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+        {{ with .Params.category }}
+        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{{ . }}</span>
+        {{ end }}
+      </div>
+      <h2 class="font-heading text-2xl font-bold text-primary-800 mb-3">
+        <a href="{{ .Permalink }}" class="hover:text-accent transition-colors">{{ .Title }}</a>
+      </h2>
+      {{ with .Description }}
+      <p class="text-gray-600 text-lg">{{ . }}</p>
+      {{ end }}
+      <a href="{{ .Permalink }}" class="inline-flex items-center mt-4 text-sm font-medium text-primary-700 hover:text-accent transition-colors">
+        Read more
+        <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="text-gray-500 text-center py-12">No news posts yet. Check back soon!</p>
+  {{ end }}
+</div>
+{{ end }}
