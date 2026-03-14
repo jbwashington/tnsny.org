@@ -1,0 +1,47 @@
+{{ with .Site.Data.alerts.alerts }}
+  {{ range . }}
+    {{ if .active }}
+    {{ $alert := . }}
+    {{ $id := .message | md5 }}
+    <div id="alert-{{ $id }}" class="alert-banner relative {{ if eq .type "warning" }}bg-amber-500 text-amber-950{{ else if eq .type "urgent" }}bg-red-600 text-white{{ else if eq .type "success" }}bg-green-600 text-white{{ else }}bg-primary-700 text-white{{ end }}" style="display:none;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
+        <div class="flex items-center space-x-2 text-sm font-medium">
+          {{ if eq .type "warning" }}
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          {{ else if eq .type "urgent" }}
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+          {{ else if eq .type "success" }}
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          {{ else }}
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+          {{ end }}
+          <span>{{ .message }}</span>
+          {{ with .link }}
+          <a href="{{ . }}" class="underline font-semibold hover:opacity-80 transition-opacity">{{ with $alert.linkText }}{{ . }}{{ else }}Learn More{{ end }}</a>
+          {{ end }}
+        </div>
+        <button onclick="dismissAlert('{{ $id }}')" class="ml-4 flex-shrink-0 hover:opacity-70 transition-opacity" aria-label="Dismiss alert">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<script>
+  function dismissAlert(id) {
+    var el = document.getElementById('alert-' + id);
+    if (el) el.style.display = 'none';
+    document.cookie = 'dismissed_alert_' + id + '=1;path=/;max-age=604800';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var banners = document.querySelectorAll('.alert-banner');
+    banners.forEach(function(banner) {
+      var id = banner.id.replace('alert-', '');
+      if (document.cookie.indexOf('dismissed_alert_' + id + '=1') === -1) {
+        banner.style.display = 'block';
+      }
+    });
+  });
+</script>

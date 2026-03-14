@@ -133,16 +133,27 @@ enableRobotsTXT = true
     parent = "families"
 
   [[menu.main]]
+    name = "Bell Schedule"
+    url = "/families/bell-schedule/"
+    weight = 6
+    parent = "families"
+
+  [[menu.main]]
     name = "Faculty & Staff"
     url = "/staff/"
     weight = 5
 
   [[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 6
+
+  [[menu.main]]
     name = "News & Events"
     url = "/news/"
-    weight = 6
+    weight = 7
 
   [[menu.main]]
     name = "Contact"
     url = "/contact/"
-    weight = 7
+    weight = 8

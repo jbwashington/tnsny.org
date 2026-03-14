@@ -1,0 +1,11 @@
+{
+  "alerts": [
+    {
+      "message": "School tours available for prospective families — contact Denise at denise@tnsny.org to schedule.",
+      "type": "info",
+      "link": "/about/",
+      "linkText": "Learn More",
+      "active": true
+    }
+  ]
+}

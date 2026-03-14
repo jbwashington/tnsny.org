@@ -1,0 +1,14 @@
+{
+  "links": [
+    { "name": "NYCSA (NYC Schools Account)", "url": "https://www.schoolsaccount.nyc/", "description": "Access your child's school account", "category": "DOE Resources" },
+    { "name": "School Menu", "url": "https://www.schools.nyc.gov/school-life/food/menus", "description": "View breakfast and lunch menus", "category": "Daily Life" },
+    { "name": "NYC DOE", "url": "https://www.schools.nyc.gov/", "description": "NYC Department of Education", "category": "DOE Resources" },
+    { "name": "MySchools", "url": "https://www.myschools.nyc/en/", "description": "School enrollment and applications", "category": "Admissions" },
+    { "name": "Online Lunch Forms", "url": "https://www.myschoolapps.com/Application", "description": "Apply for free or reduced lunch", "category": "Daily Life" },
+    { "name": "Parent University", "url": "https://parentu.schools.nyc/", "description": "Parent education and workshops", "category": "DOE Resources" },
+    { "name": "NYCSchools Account / Family Portal", "url": "https://www.schoolsaccount.nyc/", "description": "Family portal and tech support", "category": "DOE Resources" },
+    { "name": "Support Hub", "url": "https://supporthub.schools.nyc/", "description": "Technical support for families", "category": "DOE Resources" },
+    { "name": "Konstella", "url": "https://www.konstella.com", "description": "School community communication platform", "category": "TNS Community" },
+    { "name": "McKinley Library", "url": "https://sites.google.com/tnsny.org/mckinleylibrary", "description": "School library catalog and resources", "category": "TNS Community" }
+  ]
+}

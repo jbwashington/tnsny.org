@@ -24,6 +24,20 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  # ----- PUBLICATIONS & DOCUMENTS -----
+  - name: publications
+    label: "Publications & Documents"
+    folder: content/publications
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["Newsletters", "Handbooks", "Forms", "Flyers", "Reports", "Other"], default: "Newsletters" }
+      - { label: "Document File", name: "file", widget: "file" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
   # ----- ABOUT PAGES -----
   - name: about
     label: "About Pages"
@@ -121,7 +135,6 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
       - label: "PTA"
         name: "pta"
         file: "content/families/pta.md"
@@ -139,6 +152,13 @@ collections:
       - label: "Volunteer"
         name: "volunteer"
         file: "content/families/volunteer.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Bell Schedule"
+        name: "bell-schedule"
+        file: "content/families/bell-schedule.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
@@ -178,6 +198,36 @@ collections:
             widget: "list"
             fields:
               - { label: "Name", name: "name", widget: "string" }
+
+  # ----- DATA FILES -----
+  - name: site-data
+    label: "Site Data"
+    files:
+      - label: "Homepage Alerts"
+        name: "alerts-data"
+        file: "data/alerts.json"
+        fields:
+          - label: "Alerts"
+            name: "alerts"
+            widget: "list"
+            fields:
+              - { label: "Message", name: "message", widget: "string" }
+              - { label: "Type", name: "type", widget: "select", options: ["info", "warning", "urgent", "success"], default: "info" }
+              - { label: "Link URL", name: "link", widget: "string", required: false }
+              - { label: "Link Text", name: "linkText", widget: "string", required: false }
+              - { label: "Active", name: "active", widget: "boolean", default: true }
+      - label: "Helpful Links"
+        name: "links-data"
+        file: "data/links.json"
+        fields:
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["DOE Resources", "Daily Life", "Admissions", "TNS Community", "Other"], default: "DOE Resources" }
 
   # ----- CONTACT PAGE -----
   - name: contact
