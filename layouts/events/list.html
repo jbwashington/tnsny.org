@@ -1,0 +1,74 @@
+{{ define "main" }}
+<!-- Page Header -->
+<div class="bg-primary-50 border-b border-primary-100">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary-800">Upcoming Events</h1>
+    <p class="mt-3 text-lg text-gray-600">School events and important dates at The Neighborhood School.</p>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  {{ $events := .Site.Data.events.events }}
+  {{ $now := now.Format "2006-01-02" }}
+  {{ $currentMonth := "" }}
+
+  {{ range $events }}
+    {{ if ge .date $now }}
+      {{ $eventDate := time .date }}
+      {{ $monthLabel := $eventDate.Format "January 2006" }}
+
+      {{ if ne $monthLabel $currentMonth }}
+        {{ if ne $currentMonth "" }}
+          </div><!-- close previous month group -->
+        {{ end }}
+        {{ $currentMonth = $monthLabel }}
+        <h2 class="font-heading text-2xl font-bold text-primary-800 mt-10 mb-6 pb-2 border-b border-primary-100 first:mt-0">{{ $monthLabel }}</h2>
+        <div class="space-y-4">
+      {{ end }}
+
+      <div class="flex gap-5 bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+        <!-- Date Badge -->
+        <div class="flex-shrink-0 w-16 text-center">
+          <div class="bg-primary-800 text-white rounded-t-lg px-2 py-1">
+            <span class="text-xs font-semibold uppercase">{{ $eventDate.Format "Mon" }}</span>
+          </div>
+          <div class="bg-primary-50 border border-t-0 border-primary-200 rounded-b-lg px-2 py-2">
+            <span class="text-2xl font-bold text-primary-800">{{ $eventDate.Format "2" }}</span>
+          </div>
+        </div>
+
+        <!-- Event Details -->
+        <div class="flex-1 min-w-0">
+          <h3 class="font-semibold text-lg text-primary-800">{{ .title }}</h3>
+          {{ with .description }}
+          <p class="text-gray-600 mt-1">{{ . }}</p>
+          {{ end }}
+          <div class="flex flex-wrap gap-3 mt-2 text-sm text-gray-500">
+            {{ with .time }}
+            <span class="inline-flex items-center">
+              <svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              {{ . }}
+            </span>
+            {{ end }}
+            {{ with .location }}
+            <span class="inline-flex items-center">
+              <svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              {{ . }}
+            </span>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+
+  {{ if ne $currentMonth "" }}
+    </div><!-- close last month group -->
+  {{ end }}
+
+  <!-- Google Calendar Link -->
+  <div class="mt-12 bg-gray-50 rounded-xl p-6 border border-gray-200 text-center">
+    <p class="text-gray-600">For the full school calendar, view our <a href="https://calendar.google.com/calendar/embed?src={{ .Site.Params.calendarID }}&ctz=America%2FNew_York" target="_blank" rel="noopener" class="text-primary-700 font-semibold hover:text-accent underline">Google Calendar</a>.</p>
+  </div>
+</div>
+{{ end }}

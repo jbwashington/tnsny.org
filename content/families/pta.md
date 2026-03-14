@@ -45,7 +45,7 @@ There are many ways to participate in the PTA:
 
 The PTA is a **501(c)(3) tax-exempt organization**. Your donations are fully tax-deductible and go directly to supporting our students.
 
-[Donate now via Zeffy](https://www.zeffy.com/en-US/donation-form/006c94e6-ad9a-4da1-ad97-ee74e3a3b9de)
+[Donate now via Zeffy](https://www.zeffy.com/en-US/donation-form/d37601de-6d39-4ae0-8206-5d828921ec09)
 
 ## Contact the PTA
 

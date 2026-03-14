@@ -1,10 +1,10 @@
 {
   "alerts": [
     {
-      "message": "School tours available for prospective families — contact Denise at denise@tnsny.org to schedule.",
+      "message": "TNS Annual Talent Show — This Saturday, March 14th at 5:00 PM in the Auditorium!",
       "type": "info",
-      "link": "/about/",
-      "linkText": "Learn More",
+      "link": "/news/talent-show-2026/",
+      "linkText": "Details",
       "active": true
     }
   ]

@@ -14,7 +14,7 @@ enableRobotsTXT = true
   district = "District 1, Region 9"
   email = "denise@tnsny.org"
   ptaEmail = "ptapresident@tnsny.org"
-  donateURL = "https://www.zeffy.com/en-US/donation-form/006c94e6-ad9a-4da1-ad97-ee74e3a3b9de"
+  donateURL = "https://www.zeffy.com/en-US/donation-form/d37601de-6d39-4ae0-8206-5d828921ec09"
   konstellaURL = "https://www.konstella.com"
   facebookURL = "https://www.facebook.com/TheNeighborhoodSchoolNYC"
   instagramURL = "https://www.instagram.com/taborpta/"
@@ -144,16 +144,21 @@ enableRobotsTXT = true
     weight = 5
 
   [[menu.main]]
-    name = "Publications"
-    url = "/publications/"
+    name = "News"
+    url = "/news/"
     weight = 6
 
   [[menu.main]]
-    name = "News & Events"
-    url = "/news/"
+    name = "Events"
+    url = "/events/"
     weight = 7
+
+  [[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 8
 
   [[menu.main]]
     name = "Contact"
     url = "/contact/"
-    weight = 8
+    weight = 9

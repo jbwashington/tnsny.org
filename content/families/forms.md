@@ -1,41 +1,40 @@
 ---
 title: "Forms"
-description: "Important forms for TNS families"
+description: "School forms for TNS families"
 ---
 
-## School Forms
+## Absence Report
 
-Below are the most commonly needed forms for TNS families. If you need a form that is not listed here, please contact the main office at (212) 387-0195.
+If your child will be or has been absent, please submit the absence form. You'll need your child's name, grade, class, dates of absence, and reason.
 
-### Absence Reporting
+[Report an Absence →](https://www.tnsny.org/apps/forms2/?f=48360)
 
-If your child will be absent from school, please report the absence as early as possible:
+*El formulario está disponible en español e inglés.*
 
-- **Call the main office** at (212) 387-0195
-- **Email** your child's teacher directly
+## Emergency Contact Form
 
-Consistent attendance is important for your child's learning. If your child will be absent for an extended period, please contact the school office to discuss.
+Keep your emergency contact information up to date. If you're late picking up your child, the school will contact your emergency contacts. In case of illness or building emergencies, having current information is critical.
 
-### Emergency Contact Form
+You can complete a physical blue card at school or use the online form.
 
-Every family must have an up-to-date Emergency Contact Form on file with the school. This form includes:
+[Update Emergency Contacts →](https://www.tnsny.org/apps/forms2/?f=48359)
 
-- Parent/guardian contact information
-- Emergency contacts (at least 2 additional adults authorized to pick up your child)
-- Medical information and allergies
-- Doctor and hospital preferences
+## OMNY Card Request
 
-Please update your Emergency Contact Form at the beginning of each school year, and any time your information changes during the year.
+Eligible students receive OMNY tap-to-go transit passes providing 4 free rides per day, year-round including weekends and summer.
 
-### OMNY Card Requests
+[Request a New OMNY Card →](/families/omny-cards/)
 
-Students can receive a free OMNY card for public transit. See our [OMNY Cards page](/families/omny-cards/) for details.
+## Student Verification Letter
 
-### Student Verification Letter
+Request an official letter verifying your child's enrollment. All requests are filled within 48 hours. A copy will be sent home with your student unless you choose a different option.
 
-If you need a letter verifying your child's enrollment at TNS (for housing, benefits, or other purposes), please contact the main office:
+Families will be contacted if their student has below 85% attendance.
 
-- **Phone:** (212) 387-0195
-- **In person:** Visit the main office at 121 East 3rd Street
+[Request a Verification Letter →](https://www.tnsny.org/apps/forms2/?f=48359)
 
-Please allow 48 hours for letter requests to be processed.
+## School Tour Registration
+
+Prospective families can register for a campus tour to meet students, parents, and school leadership.
+
+[Register for a Tour →](https://www.tnsny.org/apps/forms2/?f=48358)

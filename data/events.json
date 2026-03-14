@@ -1,0 +1,22 @@
+{
+  "events": [
+    { "title": "Talent Show", "date": "2026-03-14", "time": "5:00 PM - 7:00 PM", "location": "TNS Auditorium", "description": "Annual student talent show. Suggested donations: $3 children, $5 adults, $10 families." },
+    { "title": "TNS Pantry Delivery", "date": "2026-03-17", "time": "", "location": "", "description": "Monthly food pantry delivery." },
+    { "title": "Eid al-Fitr — Schools Closed", "date": "2026-03-20", "time": "", "location": "", "description": "No school in observance of Eid al-Fitr." },
+    { "title": "School Leadership Team", "date": "2026-03-24", "time": "", "location": "", "description": "Monthly SLT meeting." },
+    { "title": "Parent Coordinator Appreciation Day", "date": "2026-03-26", "time": "", "location": "", "description": "Celebrating our parent coordinators." },
+    { "title": "Middle School Admissions Info Meeting", "date": "2026-03-26", "time": "6:00 PM - 7:00 PM", "location": "Zoom", "description": "Information session for families navigating middle school admissions." },
+    { "title": "SING", "date": "2026-03-27", "time": "After arrival", "location": "Gymnasium", "description": "Weekly all-school SING gathering." },
+    { "title": "Movie Night", "date": "2026-03-27", "time": "5:00 PM - 6:00 PM", "location": "The Neighborhood School", "description": "Family movie night at school." },
+    { "title": "Para Appreciation Day", "date": "2026-04-01", "time": "", "location": "", "description": "Honoring our paraprofessionals." },
+    { "title": "Spring Recess — Schools Closed", "date": "2026-04-02", "time": "", "location": "", "description": "Spring break from April 2-10. Classes resume April 13." },
+    { "title": "NYS ELA Tests", "date": "2026-04-14", "time": "", "location": "", "description": "New York State English Language Arts testing, April 14-15." },
+    { "title": "PTA Meeting", "date": "2026-04-14", "time": "8:30 AM - 9:30 AM", "location": "", "description": "Monthly PTA general meeting. All families welcome." },
+    { "title": "TNS Pantry Delivery", "date": "2026-04-14", "time": "", "location": "", "description": "Monthly food pantry delivery." },
+    { "title": "TNS Half Day — Dismissal at 11:45 AM", "date": "2026-04-17", "time": "11:45 AM", "location": "", "description": "Early dismissal. No after school programs." },
+    { "title": "Dyanthe's Morning Hour", "date": "2026-04-23", "time": "After arrival", "location": "PTA Room", "description": "Coffee hour with Principal Spielberg." },
+    { "title": "SING", "date": "2026-04-24", "time": "After arrival", "location": "Gymnasium", "description": "Weekly all-school SING gathering." },
+    { "title": "School Leadership Team", "date": "2026-04-28", "time": "", "location": "", "description": "Monthly SLT meeting." },
+    { "title": "2/3 Grades at Camp Ramapo", "date": "2026-04-29", "time": "", "location": "Camp Ramapo", "description": "2nd/3rd grade camping trip, April 29 through May 1." }
+  ]
+}

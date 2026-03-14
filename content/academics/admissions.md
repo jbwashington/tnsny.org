@@ -1,44 +1,30 @@
 ---
 title: "Admissions"
-description: "Learn how to apply to The Neighborhood School"
+description: "How to apply to The Neighborhood School"
 ---
 
-## Welcome, Prospective Families!
+## Welcome to TNS
 
-We are thrilled that you are interested in The Neighborhood School. We invite you to learn about our programs, visit our classrooms, and see firsthand what makes TNS a special place for children to learn and grow.
-
-## How to Apply
-
-The Neighborhood School participates in the NYC Department of Education admissions process. Here is how to get started:
-
-### 3K and Pre-K Admissions
-- Applications are submitted through [MySchools NYC](https://www.myschools.nyc/)
-- The application typically opens in late winter for the following school year
-- TNS offers one 3K class and one Pre-K class
-
-### Kindergarten Admissions
-- Kindergarten applications are also submitted through [MySchools NYC](https://www.myschools.nyc/)
-- Our kindergarten students are placed in multi-age K/1 classrooms
-- We welcome families from across District 1 and beyond
-
-### Transfers (Grades 1-5)
-- For mid-year or grade-level transfers, please contact our Parent Coordinator, Denise Soltren, at [denise@tnsny.org](mailto:denise@tnsny.org)
+The Neighborhood School is a progressive, inclusive public elementary school serving 3K through 5th grade in NYC's East Village (District 1). We welcome prospective families to learn about our community.
 
 ## School Tours
 
-We offer tours for prospective families throughout the fall and winter. Tours are a wonderful opportunity to see our classrooms in action, meet our teachers, and ask questions about our approach to education.
+We offer in-person tours where you'll meet current students and parents, visit classrooms, and participate in a Q&A session with Principal Spielberg and Assistant Principal Parker.
 
-**To schedule a tour**, please contact our Parent Coordinator:
-- **Denise Soltren** -- [denise@tnsny.org](mailto:denise@tnsny.org)
-- **Phone** -- (212) 387-0195
+Please bring a photo ID to show school safety when entering the building.
 
-## What Makes TNS Different
+**Interested in a tour?** Contact Parent Coordinator Denise Soltren at [denise@tnsny.org](mailto:denise@tnsny.org) or call (212) 387-0195.
 
-- **Multi-age classrooms** where children learn from and with each other
-- **Progressive, inquiry-based curriculum** that connects learning to real life
-- **Full-inclusion model** that supports every learner
-- **Anti-bias, anti-racist education** woven throughout the school experience
-- **Strong arts program** through partnerships with leading cultural organizations
-- **Active, engaged parent community** that supports and enriches school life
+## How to Apply
 
-We look forward to meeting you and your family!
+### Kindergarten (children born in 2021)
+
+Applications are submitted through [MySchools NYC](https://www.myschools.nyc/). For enrollment questions, contact 718-935-2009 or email ESEnrollment@schools.nyc.gov.
+
+### 3K and Pre-K
+
+3K and Pre-K applications are also available through [MySchools NYC](https://www.myschools.nyc/). Visit the NYC DOE website for application timelines and deadlines.
+
+### Transfer Students
+
+For mid-year transfers or general admissions inquiries, please contact our main office at (212) 387-0195.
