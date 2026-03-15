@@ -70,6 +70,13 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Principal Search"
+        name: "principal-search"
+        file: "content/about/principal-search.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
 
   # ----- ACADEMICS PAGES -----
   - name: academics

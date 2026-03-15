@@ -61,6 +61,12 @@ enableRobotsTXT = true
     parent = "about"
 
   [[menu.main]]
+    name = "Principal Search"
+    url = "/about/principal-search/"
+    weight = 4
+    parent = "about"
+
+  [[menu.main]]
     name = "Donate"
     url = "/about/donate/"
     weight = 4
