@@ -1,121 +1,337 @@
 {{ define "main" }}
-<!-- Hero Section -->
-<section class="relative bg-primary-800 text-white overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 opacity-90"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-    <div class="max-w-3xl">
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-        The Neighborhood School
-      </h1>
-      <p class="mt-2 text-accent text-lg font-medium tracking-wide uppercase">PS363M</p>
-      <p class="mt-6 text-xl md:text-2xl text-gray-200 leading-relaxed">
-        A diverse, progressive public elementary school in NYC's East Village.
-      </p>
-      <p class="mt-4 text-lg text-gray-300 leading-relaxed max-w-2xl">
-        We believe children thrive when they can build on their strengths. Our inquiry-based, anti-bias, anti-racist curriculum nurtures every child's unique potential.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/academics/admissions/" class="inline-flex items-center px-6 py-3 bg-accent hover:bg-accent-dark text-primary-900 font-semibold rounded-lg transition-colors">
-          School Tours &amp; Admissions
-        </a>
-        <a href="/about/donate/" class="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-colors">
-          Support Our School
-        </a>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes float-reverse {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-1.5deg); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(8px, -6px) scale(1.02); }
+    66% { transform: translate(-4px, 4px) scale(0.98); }
+  }
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes reveal-scale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes dash-march {
+    to { stroke-dashoffset: -20; }
+  }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-reverse { animation: float-reverse 5s ease-in-out infinite; }
+  .animate-drift { animation: drift 8s ease-in-out infinite; }
+  .animate-reveal { animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-reveal-scale { animation: reveal-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-wiggle { animation: wiggle 3s ease-in-out infinite; }
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+
+  /* Organic blob shapes */
+  .blob-1 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  .blob-2 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  .blob-3 { border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%; }
+
+  /* Hand-drawn style border */
+  .hand-drawn {
+    border: 2.5px solid currentColor;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+  .hand-drawn-sm {
+    border: 2px solid currentColor;
+    border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  }
+
+  /* Torn paper edge effect */
+  .torn-bottom {
+    position: relative;
+  }
+  .torn-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(135deg, transparent 33.33%, var(--tear-color, #faf3e8) 33.33%, var(--tear-color, #faf3e8) 66.66%, transparent 66.66%),
+                linear-gradient(225deg, transparent 33.33%, var(--tear-color, #faf3e8) 33.33%, var(--tear-color, #faf3e8) 66.66%, transparent 66.66%);
+    background-size: 20px 100%;
+  }
+
+  /* Collage tape effect */
+  .tape::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px;
+    height: 18px;
+    background: rgba(240, 197, 65, 0.5);
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  /* Stamp texture */
+  .stamp {
+    display: inline-block;
+    padding: 0.35em 0.7em;
+    border: 3px solid currentColor;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    transform: rotate(-3deg);
+    position: relative;
+  }
+  .stamp::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1.5px solid currentColor;
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  /* Notebook paper lines */
+  .notebook-lines {
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      #c8d8e4 31px,
+      #c8d8e4 32px
+    );
+    background-position: 0 8px;
+  }
+
+  /* Marker highlight effect */
+  .marker-highlight {
+    background: linear-gradient(180deg, transparent 55%, rgba(232, 102, 74, 0.25) 55%, rgba(232, 102, 74, 0.25) 90%, transparent 90%);
+    padding: 0 4px;
+  }
+
+  /* Scallop border */
+  .scallop-top {
+    --scallop-size: 14px;
+    mask-image: radial-gradient(circle at 50% 0, transparent var(--scallop-size), black calc(var(--scallop-size) + 0.5px)) 0 calc(-1 * var(--scallop-size)) / calc(2 * var(--scallop-size) + 2px) 100%;
+    -webkit-mask-image: radial-gradient(circle at 50% 0, transparent var(--scallop-size), black calc(var(--scallop-size) + 0.5px)) 0 calc(-1 * var(--scallop-size)) / calc(2 * var(--scallop-size) + 2px) 100%;
+    padding-top: var(--scallop-size);
+  }
+
+  /* Grain overlay */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Doodle underline */
+  .doodle-underline {
+    text-decoration: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='12' viewBox='0 0 200 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C30 2 60 10 90 6C120 2 150 10 198 4' stroke='%23e8664a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 200px 12px;
+    padding-bottom: 8px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #faf3e8; }
+  ::-webkit-scrollbar-thumb { background: #8aab7f; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6d8d66; }
+</style>
+
+<!-- ============================================ -->
+<!-- HERO — Big, warm, typographically expressive -->
+<!-- ============================================ -->
+<section class="relative overflow-hidden grain" style="background: linear-gradient(165deg, #1a4a4a 0%, #1d5454 40%, #265e52 100%); min-height: 90vh;">
+
+  <!-- Floating organic shapes -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="blob-1 absolute -top-20 -right-20 w-96 h-96 opacity-10 animate-drift" style="background: #e8664a;"></div>
+    <div class="blob-2 absolute bottom-10 -left-16 w-72 h-72 opacity-10 animate-float" style="background: #f0c541;"></div>
+    <div class="blob-3 absolute top-1/3 right-1/4 w-48 h-48 opacity-[0.07] animate-float-reverse" style="background: #8aab7f;"></div>
+    <!-- Scattered dots -->
+    <svg class="absolute top-16 left-[15%] w-3 h-3 opacity-20" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6" fill="#f0c541"/></svg>
+    <svg class="absolute top-[40%] right-[12%] w-4 h-4 opacity-15" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6" fill="#e8664a"/></svg>
+    <svg class="absolute bottom-[30%] left-[8%] w-2 h-2 opacity-25" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6" fill="#faf3e8"/></svg>
+    <svg class="absolute top-[20%] left-[60%] w-5 h-5 opacity-10" viewBox="0 0 20 20"><polygon points="10,0 13,7 20,7 14,12 16,20 10,15 4,20 6,12 0,7 7,7" fill="#f0c541"/></svg>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-20 pb-28 md:pt-28 md:pb-36">
+    <div class="grid lg:grid-cols-12 gap-8 items-end">
+      <!-- Left column — main headline -->
+      <div class="lg:col-span-7 animate-reveal">
+        <div class="stamp text-xs" style="color: #f0c541;">Est. 1991</div>
+        <h1 class="mt-6 leading-[0.92]" style="font-family: 'Fraunces', serif;">
+          <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black" style="color: #faf3e8;">The</span>
+          <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black" style="color: #e8664a;">Neighborhood</span>
+          <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black" style="color: #faf3e8;">School</span>
+        </h1>
+        <p class="mt-2 text-lg tracking-widest uppercase opacity-60" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">PS363M &mdash; East Village, NYC</p>
+      </div>
+
+      <!-- Right column — description + CTAs -->
+      <div class="lg:col-span-5 animate-reveal delay-200">
+        <div class="relative p-6 sm:p-8" style="background: rgba(250, 243, 232, 0.08); border-radius: 24px; backdrop-filter: blur(8px); border: 1px solid rgba(250, 243, 232, 0.1);">
+          <p class="text-lg sm:text-xl leading-relaxed" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">
+            A <em style="font-family: 'Fraunces', serif; font-style: italic; color: #f0c541;">diverse, progressive</em> public elementary school where children build on their strengths through inquiry-based, anti-bias education.
+          </p>
+          <p class="mt-4 text-base leading-relaxed opacity-70" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">
+            3K through 5th grade. 11 multi-age classrooms. One deeply connected community.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/academics/admissions/" class="inline-flex items-center px-5 py-3 text-sm font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg" style="font-family: 'Outfit', sans-serif; background: #e8664a; color: #faf3e8;">
+              School Tours &amp; Admissions
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="/about/donate/" class="inline-flex items-center px-5 py-3 text-sm font-semibold rounded-full transition-all hover:scale-105" style="font-family: 'Outfit', sans-serif; border: 2px solid rgba(250, 243, 232, 0.3); color: #faf3e8;">
+              Support Our School
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Wave divider -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none" style="width: 100%; height: 50px; display: block;">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#faf3e8"/>
+    </svg>
+  </div>
 </section>
 
-<!-- Featured: Principal Search -->
-<section class="bg-primary-900 border-b border-primary-700">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
-      <div class="flex-shrink-0">
-        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/20 text-accent">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </span>
-      </div>
-      <div class="flex-grow">
-        <h2 class="text-white font-heading text-xl font-bold">Principal Search</h2>
-        <p class="text-gray-300 mt-1">The Neighborhood School is interviewing candidates for our next principal. We welcome community input as we find the right leader for our school. <a href="/about/principal-search/" class="text-accent hover:text-accent-dark underline">Learn about the process →</a></p>
-      </div>
-      <div class="flex-shrink-0">
-        <a href="https://www.schools.nyc.gov/careers/principals-and-assistant-principals/openings-for-principals" target="_blank" rel="noopener" class="inline-flex items-center px-5 py-2.5 bg-accent hover:bg-accent-dark text-primary-900 font-semibold rounded-lg transition-colors whitespace-nowrap">
+<!-- ============================================ -->
+<!-- PRINCIPAL SEARCH — Urgent collage-style card -->
+<!-- ============================================ -->
+<section style="background: #faf3e8;">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 -mt-4 relative z-20">
+    <div class="relative tape animate-reveal-scale" style="background: #fff8e7; border: 2px solid #f0c541; border-radius: 12px; padding: 1.5rem 2rem; transform: rotate(-0.5deg);">
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
+        <div class="flex-shrink-0">
+          <span class="inline-flex items-center justify-center w-14 h-14 rounded-full animate-wiggle" style="background: #f0c541; color: #1a4a4a;">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </span>
+        </div>
+        <div class="flex-grow">
+          <h2 class="text-xl font-bold" style="font-family: 'Fraunces', serif; color: #1a4a4a;">Principal Search</h2>
+          <p class="mt-1 text-sm leading-relaxed" style="font-family: 'Outfit', sans-serif; color: #4a6a5a;">
+            We're interviewing candidates for our next principal and welcome community input.
+            <a href="/about/principal-search/" class="font-semibold underline decoration-2 transition-colors" style="color: #e8664a; text-decoration-color: #e8664a;">Learn about the process &rarr;</a>
+          </p>
+        </div>
+        <a href="https://www.schools.nyc.gov/careers/principals-and-assistant-principals/openings-for-principals" target="_blank" rel="noopener" class="flex-shrink-0 inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-full transition-all hover:scale-105" style="font-family: 'Outfit', sans-serif; background: #1a4a4a; color: #faf3e8;">
           View DOE Posting
-          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Quick Links Bar -->
-<section class="bg-white border-b border-gray-200 -mt-1">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200">
-      <a href="/academics/admissions/" class="flex items-center justify-center py-5 px-4 text-center hover:bg-primary-50 transition-colors group">
-        <div>
-          <svg class="w-6 h-6 mx-auto text-primary-600 group-hover:text-accent mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <span class="text-sm font-medium text-primary-700 group-hover:text-accent-dark">School Tours</span>
+<!-- ============================================ -->
+<!-- QUICK LINKS — Playful icon tiles             -->
+<!-- ============================================ -->
+<section class="pt-16 pb-12" style="background: #faf3e8;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="/academics/admissions/" class="group relative p-5 text-center rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-reveal delay-100" style="background: #1a4a4a;">
+        <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style="background: rgba(232, 102, 74, 0.2);">
+          <svg class="w-6 h-6" style="color: #e8664a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
         </div>
+        <span class="text-sm font-semibold" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">School Tours</span>
       </a>
-      <a href="/news/" class="flex items-center justify-center py-5 px-4 text-center hover:bg-primary-50 transition-colors group">
-        <div>
-          <svg class="w-6 h-6 mx-auto text-primary-600 group-hover:text-accent mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <span class="text-sm font-medium text-primary-700 group-hover:text-accent-dark">News</span>
+      <a href="/news/" class="group relative p-5 text-center rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-reveal delay-200" style="background: #e8664a;">
+        <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style="background: rgba(250, 243, 232, 0.2);">
+          <svg class="w-6 h-6" style="color: #faf3e8;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         </div>
+        <span class="text-sm font-semibold" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">News</span>
       </a>
-      <a href="{{ .Site.Params.donateURL }}" target="_blank" rel="noopener" class="flex items-center justify-center py-5 px-4 text-center hover:bg-primary-50 transition-colors group">
-        <div>
-          <svg class="w-6 h-6 mx-auto text-primary-600 group-hover:text-accent mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-          <span class="text-sm font-medium text-primary-700 group-hover:text-accent-dark">Donate</span>
+      <a href="{{ .Site.Params.donateURL }}" target="_blank" rel="noopener" class="group relative p-5 text-center rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-reveal delay-300" style="background: #8aab7f;">
+        <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style="background: rgba(250, 243, 232, 0.2);">
+          <svg class="w-6 h-6" style="color: #faf3e8;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
         </div>
+        <span class="text-sm font-semibold" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">Donate</span>
       </a>
-      <a href="{{ .Site.Params.konstellaURL }}" target="_blank" rel="noopener" class="flex items-center justify-center py-5 px-4 text-center hover:bg-primary-50 transition-colors group">
-        <div>
-          <svg class="w-6 h-6 mx-auto text-primary-600 group-hover:text-accent mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          <span class="text-sm font-medium text-primary-700 group-hover:text-accent-dark">Konstella</span>
+      <a href="{{ .Site.Params.konstellaURL }}" target="_blank" rel="noopener" class="group relative p-5 text-center rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl animate-reveal delay-400" style="background: #f0c541;">
+        <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style="background: rgba(26, 74, 74, 0.15);">
+          <svg class="w-6 h-6" style="color: #1a4a4a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
+        <span class="text-sm font-semibold" style="font-family: 'Outfit', sans-serif; color: #1a4a4a;">Konstella</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- About Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="font-heading text-3xl font-bold text-primary-800 mb-6">Welcome to The Neighborhood School</h2>
-        <p class="text-gray-600 text-lg leading-relaxed mb-4">
-          Founded in September 1991, The Neighborhood School serves families from 3K through 5th grade in the heart of the East Village. Our 11 multi-age classrooms foster a love of learning through project-based, inquiry-driven education.
-        </p>
-        <p class="text-gray-600 text-lg leading-relaxed mb-6">
-          We are a full-inclusion school with a deep commitment to anti-bias, anti-racist education, social justice, and social-emotional learning. Our community of families, teachers, and staff work together to create a nurturing environment where every child belongs.
-        </p>
-        <a href="/about/" class="inline-flex items-center text-primary-700 font-semibold hover:text-accent transition-colors">
+<!-- ============================================ -->
+<!-- ABOUT — Asymmetric editorial layout          -->
+<!-- ============================================ -->
+<section class="relative py-20 overflow-hidden" style="background: #faf3e8;">
+  <!-- Decorative background elements -->
+  <div class="absolute top-12 right-0 w-64 h-64 opacity-[0.04] blob-2 pointer-events-none" style="background: #1a4a4a;" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+
+      <!-- Left — Text, editorial style -->
+      <div class="lg:col-span-7">
+        <p class="text-xs tracking-[0.3em] uppercase font-semibold mb-4" style="font-family: 'Outfit', sans-serif; color: #8aab7f;">About Our School</p>
+        <h2 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[0.95] mb-8" style="font-family: 'Fraunces', serif; color: #1a4a4a;">
+          Where <span class="doodle-underline">every child</span> belongs.
+        </h2>
+        <div class="space-y-4 text-lg leading-relaxed" style="font-family: 'Outfit', sans-serif; color: #3d5a4a;">
+          <p>
+            Founded in 1991 in the heart of the East Village, The Neighborhood School serves families from <strong>3K through 5th grade</strong>. Our 11 multi-age classrooms foster a love of learning through project-based, inquiry-driven education.
+          </p>
+          <p>
+            We are a <span class="marker-highlight">full-inclusion school</span> with a deep commitment to anti-bias, anti-racist education, social justice, and social-emotional learning. Families, teachers, and staff work together to create a place where every child thrives.
+          </p>
+        </div>
+        <a href="/about/" class="inline-flex items-center mt-8 text-sm font-bold tracking-wide uppercase transition-colors hover:opacity-70" style="font-family: 'Outfit', sans-serif; color: #e8664a;">
           Learn more about TNS
-          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
-      <div class="bg-primary-50 rounded-xl p-8">
-        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-4">By the Numbers</h3>
-        <div class="grid grid-cols-2 gap-6">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-accent">11</div>
-            <div class="text-sm text-gray-600 mt-1">Multi-Age Classrooms</div>
+
+      <!-- Right — Stats as playful collage cards -->
+      <div class="lg:col-span-5 relative">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative p-6 rounded-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500" style="background: #1a4a4a;">
+            <div class="text-5xl font-black" style="font-family: 'Fraunces', serif; color: #f0c541;">11</div>
+            <div class="mt-1 text-sm font-medium opacity-80" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">Multi-Age<br>Classrooms</div>
           </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-accent">3K&ndash;5</div>
-            <div class="text-sm text-gray-600 mt-1">Grade Levels</div>
+          <div class="relative p-6 rounded-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500 mt-6" style="background: #e8664a;">
+            <div class="text-5xl font-black" style="font-family: 'Fraunces', serif; color: #faf3e8;">3K&ndash;5</div>
+            <div class="mt-1 text-sm font-medium opacity-90" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">Grade<br>Levels</div>
           </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-accent">30+</div>
-            <div class="text-sm text-gray-600 mt-1">Years of Excellence</div>
+          <div class="relative p-6 rounded-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500" style="background: #8aab7f;">
+            <div class="text-5xl font-black" style="font-family: 'Fraunces', serif; color: #faf3e8;">30+</div>
+            <div class="mt-1 text-sm font-medium opacity-90" style="font-family: 'Outfit', sans-serif; color: #1a4a4a;">Years of<br>Excellence</div>
           </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-accent">100%</div>
-            <div class="text-sm text-gray-600 mt-1">Full Inclusion</div>
+          <div class="relative p-6 rounded-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-500 mt-4" style="background: #f0c541;">
+            <div class="text-5xl font-black" style="font-family: 'Fraunces', serif; color: #1a4a4a;">100%</div>
+            <div class="mt-1 text-sm font-medium" style="font-family: 'Outfit', sans-serif; color: #3d5a4a;">Full<br>Inclusion</div>
           </div>
         </div>
       </div>
@@ -123,76 +339,141 @@
   </div>
 </section>
 
-<!-- Programs Highlights -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-heading text-3xl font-bold text-primary-800 text-center mb-12">Our Programs</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+<!-- ============================================ -->
+<!-- PROGRAMS — Overlapping editorial cards       -->
+<!-- ============================================ -->
+<section class="relative py-20 overflow-hidden grain" style="background: #1a4a4a;">
+  <!-- Decorative -->
+  <div class="absolute top-0 left-0 right-0">
+    <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" style="width: 100%; height: 40px; display: block;">
+      <path d="M0,0 L1440,0 L1440,20 C1200,60 720,0 360,40 C180,55 60,35 0,20 Z" fill="#faf3e8"/>
+    </svg>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-4">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase font-semibold mb-3" style="font-family: 'Outfit', sans-serif; color: #8aab7f;">What We Offer</p>
+        <h2 class="text-4xl sm:text-5xl font-black leading-[0.95]" style="font-family: 'Fraunces', serif; color: #faf3e8;">
+          Our Programs
+        </h2>
+      </div>
+      <p class="max-w-md text-base opacity-70" style="font-family: 'Outfit', sans-serif; color: #faf3e8;">
+        Learning through doing, creating, and connecting &mdash; the East Village way.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="group relative rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" style="background: #faf3e8;">
+        <div class="absolute top-0 left-0 w-full h-1.5" style="background: #e8664a;"></div>
+        <div class="p-7 sm:p-8">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform blob-1" style="background: rgba(232, 102, 74, 0.12);">
+            <svg class="w-7 h-7" style="color: #e8664a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3" style="font-family: 'Fraunces', serif; color: #1a4a4a;">Progressive Curriculum</h3>
+          <p class="text-sm leading-relaxed mb-5" style="font-family: 'Outfit', sans-serif; color: #4a6a5a;">
+            Project-based learning integrating language arts, science, social studies, math, and the arts into meaningful, inquiry-driven experiences.
+          </p>
+          <a href="/academics/our-curriculum/" class="inline-flex items-center text-xs font-bold tracking-wider uppercase transition-colors" style="font-family: 'Outfit', sans-serif; color: #e8664a;">
+            Explore
+            <svg class="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-3">Progressive Curriculum</h3>
-        <p class="text-gray-600">Project-based learning that integrates language arts, science, social studies, math, and the arts into meaningful, inquiry-driven experiences.</p>
-        <a href="/academics/our-curriculum/" class="inline-flex items-center mt-4 text-sm font-medium text-primary-700 hover:text-accent transition-colors">
-          Explore our curriculum
-          <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
       </div>
 
-      <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+      <!-- Card 2 -->
+      <div class="group relative rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl md:mt-8" style="background: #faf3e8;">
+        <div class="absolute top-0 left-0 w-full h-1.5" style="background: #f0c541;"></div>
+        <div class="p-7 sm:p-8">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform blob-2" style="background: rgba(240, 197, 65, 0.15);">
+            <svg class="w-7 h-7" style="color: #c5a030;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3" style="font-family: 'Fraunces', serif; color: #1a4a4a;">Arts Partnerships</h3>
+          <p class="text-sm leading-relaxed mb-5" style="font-family: 'Outfit', sans-serif; color: #4a6a5a;">
+            Enriching programs through Studio in a School, Third Street Music School, NYC Ballet, and other world-class arts organizations.
+          </p>
+          <a href="/about/" class="inline-flex items-center text-xs font-bold tracking-wider uppercase transition-colors" style="font-family: 'Outfit', sans-serif; color: #c5a030;">
+            Learn More
+            <svg class="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-3">Arts Partnerships</h3>
-        <p class="text-gray-600">Enriching programs through Studio in a School, Third Street Music School, NYC Ballet, and other world-class arts organizations.</p>
-        <a href="/about/" class="inline-flex items-center mt-4 text-sm font-medium text-primary-700 hover:text-accent transition-colors">
-          Learn more
-          <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
       </div>
 
-      <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      <!-- Card 3 -->
+      <div class="group relative rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" style="background: #faf3e8;">
+        <div class="absolute top-0 left-0 w-full h-1.5" style="background: #8aab7f;"></div>
+        <div class="p-7 sm:p-8">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform blob-3" style="background: rgba(138, 171, 127, 0.15);">
+            <svg class="w-7 h-7" style="color: #6d8d66;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3" style="font-family: 'Fraunces', serif; color: #1a4a4a;">Inclusive Community</h3>
+          <p class="text-sm leading-relaxed mb-5" style="font-family: 'Outfit', sans-serif; color: #4a6a5a;">
+            A full-inclusion model with ICT classes, support services, and a commitment to diversity and social-emotional learning for every child.
+          </p>
+          <a href="/academics/our-classes/" class="inline-flex items-center text-xs font-bold tracking-wider uppercase transition-colors" style="font-family: 'Outfit', sans-serif; color: #6d8d66;">
+            See Our Classes
+            <svg class="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-        <h3 class="font-heading text-xl font-semibold text-primary-800 mb-3">Inclusive Community</h3>
-        <p class="text-gray-600">A full-inclusion model with ICT classes, support services, and a commitment to diversity and social-emotional learning for every child.</p>
-        <a href="/academics/our-classes/" class="inline-flex items-center mt-4 text-sm font-medium text-primary-700 hover:text-accent transition-colors">
-          See our classes
-          <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Calendar Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-heading text-3xl font-bold text-primary-800 text-center mb-4">Upcoming Events</h2>
-    <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Stay up to date with school events, PTA meetings, and important dates.</p>
-    <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
-      <iframe src="https://calendar.google.com/calendar/embed?src={{ .Site.Params.calendarID }}&ctz=America%2FNew_York&mode=AGENDA&showTitle=0&showNav=1&showPrint=0&showTabs=0&showCalendars=0" style="border: 0" width="100%" height="400" frameborder="0" scrolling="no" class="rounded-lg"></iframe>
+<!-- ============================================ -->
+<!-- CALENDAR — Warm, notebook-inspired           -->
+<!-- ============================================ -->
+<section class="relative py-20" style="background: #faf3e8;">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-[0.3em] uppercase font-semibold mb-3" style="font-family: 'Outfit', sans-serif; color: #e8664a;">Mark Your Calendar</p>
+      <h2 class="text-4xl sm:text-5xl font-black leading-tight" style="font-family: 'Fraunces', serif; color: #1a4a4a;">
+        Upcoming Events
+      </h2>
+      <p class="mt-3 max-w-lg mx-auto text-base" style="font-family: 'Outfit', sans-serif; color: #4a6a5a;">
+        School events, PTA meetings, and important dates &mdash; all in one place.
+      </p>
+    </div>
+    <div class="relative notebook-lines rounded-3xl overflow-hidden shadow-lg" style="background: #fff; border: 2px solid #d4dce4;">
+      <!-- Red margin line -->
+      <div class="absolute left-16 top-0 bottom-0 w-px hidden sm:block" style="background: rgba(232, 102, 74, 0.3);"></div>
+      <div class="p-2 sm:p-4">
+        <iframe src="https://calendar.google.com/calendar/embed?src={{ .Site.Params.calendarID }}&ctz=America%2FNew_York&mode=AGENDA&showTitle=0&showNav=1&showPrint=0&showTabs=0&showCalendars=0" style="border: 0" width="100%" height="420" frameborder="0" scrolling="no" class="rounded-xl"></iframe>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-16 bg-accent/10">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="font-heading text-3xl font-bold text-primary-800 mb-4">Support The Neighborhood School</h2>
-    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-      Your tax-deductible donation helps fund arts programs, teaching assistants, and school trips. Every dollar makes a difference for our students.
+<!-- ============================================ -->
+<!-- DONATE CTA — Bold, warm, full-bleed          -->
+<!-- ============================================ -->
+<section class="relative py-24 overflow-hidden grain" style="background: linear-gradient(135deg, #e8664a 0%, #d4553b 50%, #c44a32 100%);">
+  <!-- Organic shapes -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="blob-1 absolute -top-20 -left-20 w-80 h-80 opacity-10" style="background: #f0c541;"></div>
+    <div class="blob-3 absolute -bottom-16 -right-16 w-72 h-72 opacity-10" style="background: #faf3e8;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 text-center">
+    <div class="stamp text-xs mb-6" style="color: #faf3e8; display: inline-block;">Tax Deductible</div>
+    <h2 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[0.95]" style="font-family: 'Fraunces', serif; color: #faf3e8;">
+      Invest in our<br>
+      <span style="color: #f0c541;">children's future.</span>
+    </h2>
+    <p class="mt-6 text-lg max-w-xl mx-auto leading-relaxed" style="font-family: 'Outfit', sans-serif; color: rgba(250, 243, 232, 0.85);">
+      Your donation funds arts programs, teaching assistants, and school trips. Every dollar makes a difference for our students.
     </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="{{ .Site.Params.donateURL }}" target="_blank" rel="noopener" class="inline-flex items-center px-8 py-3 bg-accent hover:bg-accent-dark text-primary-900 font-semibold rounded-lg transition-colors text-lg">
+    <div class="mt-10 flex flex-wrap gap-4 justify-center">
+      <a href="{{ .Site.Params.donateURL }}" target="_blank" rel="noopener" class="inline-flex items-center px-8 py-4 text-lg font-bold rounded-full transition-all hover:scale-105 hover:shadow-2xl" style="font-family: 'Outfit', sans-serif; background: #faf3e8; color: #c44a32;">
         Donate Now
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
       </a>
-      <a href="/families/volunteer/" class="inline-flex items-center px-8 py-3 bg-primary-800 hover:bg-primary-900 text-white font-semibold rounded-lg transition-colors text-lg">
+      <a href="/families/volunteer/" class="inline-flex items-center px-8 py-4 text-lg font-bold rounded-full transition-all hover:scale-105" style="font-family: 'Outfit', sans-serif; border: 2.5px solid rgba(250, 243, 232, 0.4); color: #faf3e8;">
         Volunteer
       </a>
     </div>
   </div>
 </section>
+
 {{ end }}
