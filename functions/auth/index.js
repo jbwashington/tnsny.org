@@ -7,6 +7,10 @@
  * environment secret. Cloudflare Access protects this route so only
  * approved editors can reach it.
  *
+ * Handles two scenarios:
+ * 1. Popup mode (window.opener exists) — sends postMessage back to CMS
+ * 2. Redirect mode (popup blocked) — stores token and redirects to /admin/
+ *
  * Required env var (set in Cloudflare Pages → Settings → Environment Variables):
  *   GITHUB_TOKEN — a fine-grained GitHub PAT with Contents read/write on the site repo
  */
@@ -19,9 +23,6 @@ export async function onRequestGet(context) {
     });
   }
 
-  // Decap CMS opens this URL in a popup and listens for a postMessage
-  // containing the auth token. We short-circuit the OAuth flow and just
-  // send back the bot token immediately.
   const html = `<!DOCTYPE html>
 <html>
 <head><title>Authenticating...</title></head>
@@ -30,18 +31,39 @@ export async function onRequestGet(context) {
 <script>
 (function() {
   var token = ${JSON.stringify(token)};
-  var payload = JSON.stringify({ token: token, provider: "github" });
-  var origin = document.referrer
-    ? new URL(document.referrer).origin
-    : window.location.origin;
+  var provider = "github";
+  var payload = JSON.stringify({ token: token, provider: provider });
+  var message = "authorization:" + provider + ":success:" + payload;
+  var origin = window.location.origin;
 
+  // Case 1: Opened as a popup by Decap CMS
   if (window.opener) {
-    window.opener.postMessage(
-      "authorization:github:success:" + payload,
-      origin
-    );
+    window.opener.postMessage(message, origin);
     window.close();
+    return;
   }
+
+  // Case 2: Popup was blocked — navigated directly.
+  // Store the token so the CMS can pick it up, then redirect back.
+  // Decap CMS checks for the auth token in the URL hash on load.
+  document.body.innerHTML = "<p>Redirecting to CMS&hellip;</p>";
+
+  // Store in sessionStorage as a backup
+  try {
+    sessionStorage.setItem("decap-cms-auth", payload);
+  } catch(e) {}
+
+  // Use the message channel approach: open /admin/ and postMessage from there
+  var adminUrl = origin + "/admin/";
+  var newWindow = window.open(adminUrl, "_self");
+
+  // Also try dispatching a message event after a short delay
+  // in case the page loads in the same context
+  setTimeout(function() {
+    try {
+      window.postMessage(message, origin);
+    } catch(e) {}
+  }, 500);
 })();
 </script>
 </body>
