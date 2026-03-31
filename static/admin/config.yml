@@ -2,7 +2,7 @@ backend:
   name: github
   repo: jbwashington/tnsny.org
   branch: main
-  base_url: https://tnsny.org
+  base_url: https://tnsny-org.pages.dev
   auth_endpoint: /auth
 
 media_folder: static/images
